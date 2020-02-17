@@ -25,20 +25,21 @@ console.log(todos)
       </Wrapper>
   )
 }
+
+interface ITodoList {
+    todos: ITodo[]
+}
+
 interface RootState {
-    toggle: any
-    todoList: any
+    todoList: ITodoList
+}
 
-  }
-
-const mapState = (state: RootState) => ({
-    light: state.toggle.light,
-    todos: state.todoList.todos
-  })
+const mapState = ({ todoList }: RootState) => ({
+    todos: todoList.todos
+})
   
 const mapDispatch = {
-    // toggleOn: (light: boolean) => toggleOn(light),
-    // handleTodo: (title: string) => handleTodo(title)
+    
 }
 
 export default connect(

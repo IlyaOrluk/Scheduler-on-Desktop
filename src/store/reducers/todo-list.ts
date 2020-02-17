@@ -1,11 +1,11 @@
 import { 
-    TITLE_HANDLER
+  ADD_TODO_ITEM
    } from '../types'
-import { ITodo } from '../../interfaces'
+import { 
+  TodoList
+ } from '../../interfaces'
 
-interface TodoList {
-	todos: ITodo[]
-  }
+
 const initialState: TodoList = {
 	todos: [
         {
@@ -25,9 +25,9 @@ const initialState: TodoList = {
 
 export default (state = initialState, action: any): TodoList  => {
 	switch (action.type) {
-		case TITLE_HANDLER:
+		case ADD_TODO_ITEM:
 			return {
-				todos: action.payload
+        todos: [ ...state.todos, { title: action.payload, complete: false }]
 			}
 
 		default:

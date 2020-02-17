@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import {
     toggleOn,
-    handleTodo
+    handleTodo,
+    addTodoItem
 } from '../store/actions'
 
 interface TodoFormProps {
-    // todoHandler(title: string): void
     handleTodo(title: string): void
     toggleOn(toggle: boolean): void
+    addTodoItem(title: string): void
     title: string
     light: boolean
 }
@@ -19,7 +20,7 @@ const TodoForm: React.FC<TodoFormProps> = (props) => {
       <Wrapper>
         <form className="todo-form" onSubmit={e =>{
             e.preventDefault()
-            // props.todoHandler(props.title)
+            props.addTodoItem(props.title)
             props.handleTodo('')
         }}>
             <input
@@ -48,7 +49,8 @@ const mapState = (state: RootState) => ({
   
 const mapDispatch = {
     toggleOn: (light: boolean) => toggleOn(light),
-    handleTodo: (title: string) => handleTodo(title)
+    handleTodo: (title: string) => handleTodo(title),
+    addTodoItem: (title: string) => addTodoItem(title)
 }
 
 export default connect(

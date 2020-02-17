@@ -1,6 +1,7 @@
 import {
   TOGGLE_ON,
   TITLE_HANDLER,
+  ADD_TODO_ITEM,
 } from './types'
 
 
@@ -15,7 +16,7 @@ export const toggleOn = (light: boolean): setToggleOnActionType => ({
 
 
 type setHandleTodoActionType = {
-  type: typeof TOGGLE_ON,
+  type: typeof TITLE_HANDLER,
   payload: string
 }
 export const handleTodo = (title: string): setHandleTodoActionType => ({
@@ -23,5 +24,14 @@ export const handleTodo = (title: string): setHandleTodoActionType => ({
   payload: title
 })
 
+
+type setAddTodoItemActionType = {
+  type: typeof ADD_TODO_ITEM,
+  payload: string
+}
+export const addTodoItem = (title: string): setAddTodoItemActionType => ({
+  type: ADD_TODO_ITEM,
+  payload: title
+})
 
 

@@ -1,21 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Header from './header'
 import TodoForm from './todo-form'
 import TodoList from './todo-list'
-import { ITodo } from '../interfaces'
 
-const App: React.FunctionComponent = () => {
-  // const [todos, setTodos] = useState<ITodo[]>()
-
-  // const todoHandler = (title: string) => {
-  //   const newTodo: ITodo = {
-  //     title: title,
-  //     complete: false
-  //   }
-  //   setTodos(prev => [ ...prev, newTodo])
-  // }
-
+const Main: React.FunctionComponent = () => {
+  
   return (
     <Wrapper>
       <Header/>
@@ -28,7 +18,7 @@ const App: React.FunctionComponent = () => {
   )
 }
 
-export default App
+export default Main
 
 
 const Wrapper = styled.div`
