@@ -41,10 +41,6 @@ const Wrapper = styled.div`
   }
 }
 
-
-
-
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg) scale(1,1);

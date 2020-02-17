@@ -6,36 +6,22 @@ import TodoList from './todo-list'
 import { ITodo } from '../interfaces'
 
 const App: React.FunctionComponent = () => {
-  const [todos, setTodos] = useState<ITodo[]>([
-    {
-      title: 'Learn TypeScript!',
-      complete: false
-    },
-    {
-      title: 'Learn English!',
-      complete: false
-    },
-    {
-      title: 'Dont be afraid',
-      complete: false
-    },
-  ])
+  // const [todos, setTodos] = useState<ITodo[]>()
 
-  const todoHandler = (title: string) => {
-    const newTodo: ITodo = {
-      title: title,
-      complete: false
-    }
-
-    setTodos(prev => [ ...prev, newTodo])
-  }
+  // const todoHandler = (title: string) => {
+  //   const newTodo: ITodo = {
+  //     title: title,
+  //     complete: false
+  //   }
+  //   setTodos(prev => [ ...prev, newTodo])
+  // }
 
   return (
     <Wrapper>
       <Header/>
       <div className='container'>
-        <TodoForm todoHandler={todoHandler}/>
-        <TodoList todos={todos}/>
+        <TodoForm />
+        <TodoList />
       </div>
     </Wrapper>
 

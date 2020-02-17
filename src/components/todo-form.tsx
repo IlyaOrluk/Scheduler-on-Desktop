@@ -1,53 +1,54 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { connect, ConnectedProps  } from 'react-redux'
+import { connect } from 'react-redux'
 import {
-    toggleOn
+    toggleOn,
+    handleTodo
 } from '../store/actions'
 
 interface TodoFormProps {
-    todoHandler(title: string): void
+    // todoHandler(title: string): void
+    handleTodo(title: string): void
     toggleOn(toggle: boolean): void
+    title: string
     light: boolean
 }
 
 const TodoForm: React.FC<TodoFormProps> = (props) => {
-    const [title, setTitle] = useState<string>('')
-    const lightColor: string = props.light? 'yellow': 'transparent'
   return (
-      <Wrapper color={lightColor}>
+      <Wrapper>
         <form className="todo-form" onSubmit={e =>{
             e.preventDefault()
-            props.todoHandler(title)
-            setTitle('')
+            // props.todoHandler(props.title)
+            props.handleTodo('')
         }}>
             <input
                 className='todo-form-input'
                 type='text'
                 placeholder='Add new Todo my boy...'
-                value={title}
-                onChange={e => setTitle((e.target as HTMLInputElement).value)}
+                value={props.title}
+                onChange={e => props.handleTodo((e.target as HTMLInputElement).value)}
                 />
             <input className='todo-form-submit' type='submit' value='Add'/>
         </form>
-        <button onClick={() => {
-            props.toggleOn(!props.light)
-            console.log(props.light)
-            }}>PUSH ME</button>
+        <button onClick={() => {props.toggleOn(!props.light)}}>PUSH ME</button>
       </Wrapper>
   )
 }
 
 interface RootState {
     toggle: any
+    todoForm: any
   }
 
 const mapState = (state: RootState) => ({
-    light: state.toggle.light
+    light: state.toggle.light,
+    title: state.todoForm.title
   })
   
 const mapDispatch = {
-    toggleOn: (light: boolean) => toggleOn(light)
+    toggleOn: (light: boolean) => toggleOn(light),
+    handleTodo: (title: string) => handleTodo(title)
 }
 
 export default connect(
@@ -60,7 +61,7 @@ const Wrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    background: ${props => props.color};
+
     .todo-form {
         margin: 30px;
 

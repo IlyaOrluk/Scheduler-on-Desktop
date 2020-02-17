@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 import { ITodo } from '../interfaces'
 
 interface TodoListProps {
@@ -7,7 +8,7 @@ interface TodoListProps {
 }
 
 const TodoList: React.FC<TodoListProps> = ({ todos }) => {
-
+console.log(todos)
   return (
       <Wrapper>
           <ul className='todo-list'>
@@ -24,8 +25,26 @@ const TodoList: React.FC<TodoListProps> = ({ todos }) => {
       </Wrapper>
   )
 }
+interface RootState {
+    toggle: any
+    todoList: any
 
-export default TodoList
+  }
+
+const mapState = (state: RootState) => ({
+    light: state.toggle.light,
+    todos: state.todoList.todos
+  })
+  
+const mapDispatch = {
+    // toggleOn: (light: boolean) => toggleOn(light),
+    // handleTodo: (title: string) => handleTodo(title)
+}
+
+export default connect(
+    mapState,
+    mapDispatch
+)(TodoList)
 
 
 const Wrapper = styled.div`
@@ -46,8 +65,6 @@ const Wrapper = styled.div`
             display: flex;
             justify-content: space-between;
             align-items: center;
-
-
         }
     }
 `
