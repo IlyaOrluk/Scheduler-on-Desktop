@@ -1,5 +1,5 @@
 import { 
-    TITLE_HANDLER
+    HANDLER_TODO_TITLE
    } from '../types'
 
 interface TodoForm {
@@ -11,7 +11,7 @@ const initialState: TodoForm = {
 
 export default (state = initialState, action: any): TodoForm  => {
 	switch (action.type) {
-		case TITLE_HANDLER:
+		case HANDLER_TODO_TITLE:
 			return {
 				title: action.payload
 			}

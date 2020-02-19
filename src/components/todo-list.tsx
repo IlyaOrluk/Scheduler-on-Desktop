@@ -3,12 +3,16 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { ITodo } from '../interfaces'
 
+import { todoCompleteItem, todoDeleteItem } from '../store/actions'
+
 interface TodoListProps {
     todos: ITodo[]
+    todoCompleteItem(complete: boolean, id: number): void
+    todoDeleteItem(id: number): void
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos }) => {
-console.log(todos)
+const TodoList: React.FC<TodoListProps> = ({ todos, todoCompleteItem, todoDeleteItem }) => {
+    const todoCompleteClass = (complete: boolean) => complete ? 'complete' : ''
   return (
       <Wrapper>
           <ul className='todo-list'>
@@ -16,8 +20,12 @@ console.log(todos)
                 return (
                     <li className='todo-list-item' key={id}>
                         <span>{id+1}.</span>
-                        <span>{item.title}</span>
-                        <input type='checkbox' checked={item.complete} onChange={() => {}}/>
+                        <span className={todoCompleteClass(item.complete)}>{item.title}</span>
+                        <span className='delete' onClick={() => todoDeleteItem(id)}>DELETE</span>
+                        <input type='checkbox' checked={item.complete} onChange={() => {
+                            console.log(id)
+                            todoCompleteItem(!item.complete,id)
+                        }}/>
                     </li>
                 )
             })}
@@ -39,7 +47,8 @@ const mapState = ({ todoList }: RootState) => ({
 })
   
 const mapDispatch = {
-    
+    todoCompleteItem: (complete: boolean, id: number) => todoCompleteItem(complete, id),
+    todoDeleteItem: (id: number) => todoDeleteItem(id)
 }
 
 export default connect(
@@ -58,6 +67,7 @@ const Wrapper = styled.div`
         align-items: center;
         &-item {
             width: 100%;
+            margin: 5px;
             border: 0;
             border-bottom: 2px solid #5f554f;
             font-size: 30px;
@@ -66,6 +76,18 @@ const Wrapper = styled.div`
             display: flex;
             justify-content: space-between;
             align-items: center;
+            .delete {
+                color: red;
+                cursor: pointer;
+            }
+            .complete {
+                text-decoration: line-through;
+            }
+            .complete:before {
+                content: '';
+                width: 100%;
+                height: 3px;
+            }
         }
     }
 `

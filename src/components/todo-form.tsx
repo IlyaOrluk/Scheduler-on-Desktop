@@ -2,17 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import {
-    toggleOn,
     handleTodo,
     addTodoItem
 } from '../store/actions'
 
 interface TodoFormProps {
     handleTodo(title: string): void
-    toggleOn(toggle: boolean): void
     addTodoItem(title: string): void
     title: string
-    light: boolean
 }
 
 const TodoForm: React.FC<TodoFormProps> = (props) => {
@@ -32,23 +29,22 @@ const TodoForm: React.FC<TodoFormProps> = (props) => {
                 />
             <input className='todo-form-submit' type='submit' value='Add'/>
         </form>
-        <button onClick={() => {props.toggleOn(!props.light)}}>PUSH ME</button>
       </Wrapper>
   )
 }
+interface ITodoForm {
+    title: string
+}
 
 interface RootState {
-    toggle: any
-    todoForm: any
-  }
+    todoForm: ITodoForm
+}
 
 const mapState = (state: RootState) => ({
-    light: state.toggle.light,
     title: state.todoForm.title
-  })
+})
   
 const mapDispatch = {
-    toggleOn: (light: boolean) => toggleOn(light),
     handleTodo: (title: string) => handleTodo(title),
     addTodoItem: (title: string) => addTodoItem(title)
 }
