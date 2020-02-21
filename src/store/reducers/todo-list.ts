@@ -9,20 +9,7 @@ import {
 
 
 const initialState: TodoList = {
-	todos: [
-        {
-          title: 'Learn TypeScript!',
-          complete: false
-        },
-        {
-          title: 'Learn English!',
-          complete: false
-        },
-        {
-          title: 'Dont be afraid',
-          complete: false
-        },
-      ]
+	todos: []
 }
 
 export default (state = initialState, action: any): TodoList  => {

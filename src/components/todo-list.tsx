@@ -1,17 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { ITodo } from '../interfaces'
 
-import { todoCompleteItem, todoDeleteItem } from '../store/actions'
+import {
+    addTodoItem,
+    todoCompleteItem,
+    todoDeleteItem
+} from '../store/actions'
 
 interface TodoListProps {
     todos: ITodo[]
     todoCompleteItem(complete: boolean, id: number): void
     todoDeleteItem(id: number): void
+    addTodoItem(title: string): void
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, todoCompleteItem, todoDeleteItem }) => {
+const TodoList: React.FunctionComponent<TodoListProps> = ({ todos, todoCompleteItem, todoDeleteItem, addTodoItem }) => {
+    // const todos: ITodo[] = [] || []
+    useEffect(() => {
+        const localTodos = JSON.parse(localStorage.getItem('todos') || '[]') as ITodo[]
+            localTodos.map(item => {
+                addTodoItem(item.title)
+            })
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos))
+        // console.log(JSON.parse(localStorage.getItem('todos') || '[]') as ITodo)
+    }, [todos])
+
     const todoCompleteClass = (complete: boolean) => complete ? 'complete' : ''
   return (
       <Wrapper>
@@ -47,6 +65,7 @@ const mapState = ({ todoList }: RootState) => ({
 })
   
 const mapDispatch = {
+    addTodoItem: (title: string) => addTodoItem(title),
     todoCompleteItem: (complete: boolean, id: number) => todoCompleteItem(complete, id),
     todoDeleteItem: (id: number) => todoDeleteItem(id)
 }
