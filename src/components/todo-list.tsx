@@ -13,21 +13,20 @@ interface TodoListProps {
     todos: ITodo[]
     todoCompleteItem(complete: boolean, id: number): void
     todoDeleteItem(id: number): void
-    addTodoItem(title: string): void
+    addTodoItem(title: string, complete: boolean): void
 }
 
 const TodoList: React.FunctionComponent<TodoListProps> = ({ todos, todoCompleteItem, todoDeleteItem, addTodoItem }) => {
-    // const todos: ITodo[] = [] || []
     useEffect(() => {
         const localTodos = JSON.parse(localStorage.getItem('todos') || '[]') as ITodo[]
             localTodos.map(item => {
-                addTodoItem(item.title)
+                addTodoItem(item.title, item.complete)
             })
     }, [])
 
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos))
-        // console.log(JSON.parse(localStorage.getItem('todos') || '[]') as ITodo)
+        console.log(JSON.parse(localStorage.getItem('todos') || '[]') as ITodo)
     }, [todos])
 
     const todoCompleteClass = (complete: boolean) => complete ? 'complete' : ''
@@ -65,7 +64,7 @@ const mapState = ({ todoList }: RootState) => ({
 })
   
 const mapDispatch = {
-    addTodoItem: (title: string) => addTodoItem(title),
+    addTodoItem: (title: string, complete: boolean) => addTodoItem(title, complete),
     todoCompleteItem: (complete: boolean, id: number) => todoCompleteItem(complete, id),
     todoDeleteItem: (id: number) => todoDeleteItem(id)
 }

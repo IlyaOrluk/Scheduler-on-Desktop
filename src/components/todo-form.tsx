@@ -8,7 +8,7 @@ import {
 
 interface TodoFormProps {
     handleTodo(title: string): void
-    addTodoItem(title: string): void
+    addTodoItem(title: string, complete: boolean): void
     title: string
 }
 
@@ -17,7 +17,7 @@ const TodoForm: React.FC<TodoFormProps> = (props) => {
       <Wrapper>
         <form className="todo-form" onSubmit={e =>{
             e.preventDefault()
-            props.addTodoItem(props.title)
+            props.addTodoItem(props.title, false)
             props.handleTodo('')
         }}>
             <input
@@ -46,7 +46,7 @@ const mapState = (state: RootState) => ({
   
 const mapDispatch = {
     handleTodo: (title: string) => handleTodo(title),
-    addTodoItem: (title: string) => addTodoItem(title)
+    addTodoItem: (title: string, complete: boolean) => addTodoItem(title, complete)
 }
 
 export default connect(

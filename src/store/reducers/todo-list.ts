@@ -16,7 +16,7 @@ export default (state = initialState, action: any): TodoList  => {
 	switch (action.type) {
 		case ADD_TODO_ITEM:
 			return {
-        todos: [ ...state.todos, { title: action.payload, complete: false }]
+        todos: [ ...state.todos, { title: action.payload.title, complete: action.payload.complete }]
 			}
     case COMPLETE_TODO_ITEM:
       return {
