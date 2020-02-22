@@ -1,20 +1,13 @@
 import {
-  ADD_TODO_ITEM,
-  COMPLETE_TODO_ITEM,
-  DELETE_TODO_ITEM,
-  HANDLER_TODO_TITLE,
+  TodoActionTypes,
 } from './types'
 
-
-
-
-
 type setHandleTodoActionType = {
-  type: typeof HANDLER_TODO_TITLE,
+  type: typeof TodoActionTypes.HANDLER_TITLE,
   payload: string
 }
 export const handleTodo = (title: string): setHandleTodoActionType => ({
-  type: HANDLER_TODO_TITLE,
+  type: TodoActionTypes.HANDLER_TITLE,
   payload: title
 })
 
@@ -24,11 +17,11 @@ type setAddTodoItemActionPayloadType = {
   complete: boolean
 }
 type setAddTodoItemActionType = {
-  type: typeof ADD_TODO_ITEM,
+  type: typeof TodoActionTypes.ADD_ITEM,
   payload: setAddTodoItemActionPayloadType
 }
 export const addTodoItem = (id: number, title: string, complete: boolean): setAddTodoItemActionType => ({
-  type: ADD_TODO_ITEM,
+  type: TodoActionTypes.ADD_ITEM,
   payload: { id, title, complete }
 })
 
@@ -37,20 +30,20 @@ type setTodoCompleteActionPayloadType = {
   id: number
 }
 type setTodoCompleteActionType = {
-  type: typeof COMPLETE_TODO_ITEM,
+  type: typeof TodoActionTypes.COMPLETE_ITEM,
   payload: setTodoCompleteActionPayloadType
 }
 export const todoCompleteItem = (complete: boolean, id: number): setTodoCompleteActionType => ({
-  type: COMPLETE_TODO_ITEM,
+  type: TodoActionTypes.COMPLETE_ITEM,
   payload: {complete, id}
 })
 
 type setTodoDeleteActionType = {
-  type: typeof DELETE_TODO_ITEM,
+  type: typeof TodoActionTypes.DELETE_ITEM,
   payload: number
 }
 export const todoDeleteItem = (id: number): setTodoDeleteActionType => ({
-  type: DELETE_TODO_ITEM,
+  type: TodoActionTypes.DELETE_ITEM,
   payload: id
 })
 

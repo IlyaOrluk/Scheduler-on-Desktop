@@ -1,5 +1,5 @@
 import { 
-    HANDLER_TODO_TITLE
+    TodoActionTypes
    } from '../types'
 
 interface TodoForm {
@@ -9,9 +9,14 @@ const initialState: TodoForm = {
 	title: ''
 }
 
-export default (state = initialState, action: any): TodoForm  => {
+interface todoFormReducerActionType {
+	type: any
+	payload: string
+}
+
+export default (state = initialState, action: todoFormReducerActionType): TodoForm  => {
 	switch (action.type) {
-		case HANDLER_TODO_TITLE:
+		case TodoActionTypes.HANDLER_TITLE:
 			return {
 				title: action.payload
 			}

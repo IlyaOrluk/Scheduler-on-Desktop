@@ -1,10 +1,9 @@
 import { 
-  ADD_TODO_ITEM,
-  COMPLETE_TODO_ITEM,
-  DELETE_TODO_ITEM,
+  TodoActionTypes
    } from '../types'
 import { 
-  ITodoList
+  ITodoList,
+  ITodo
  } from '../../interfaces'
 
 
@@ -12,9 +11,17 @@ const initialState: ITodoList = {
 	todos: []
 }
 
-export default (state = initialState, action: any): ITodoList  => {
+// export interface Action {
+//   type: string;
+//   [key: any]: any;
+// }
+export interface todoListReducerActionType {
+  type: any
+  payload: ITodo
+}
+export default (state = initialState, action: todoListReducerActionType ): ITodoList  => {
 	switch (action.type) {
-		case ADD_TODO_ITEM:
+		case TodoActionTypes.ADD_ITEM:
 			return {
         todos: [ 
           ...state.todos,
@@ -25,7 +32,7 @@ export default (state = initialState, action: any): ITodoList  => {
           }
         ]
 			}
-    case COMPLETE_TODO_ITEM:
+    case TodoActionTypes.COMPLETE_ITEM:
       return {
         todos: [...state.todos.slice(0,action.payload.id),{
           id: state.todos.filter(item => item.id === action.payload.id)[0].id,
@@ -33,9 +40,9 @@ export default (state = initialState, action: any): ITodoList  => {
           complete: action.payload.complete
         },...state.todos.slice(action.payload.id+1)]
       }
-    case DELETE_TODO_ITEM:
+    case TodoActionTypes.DELETE_ITEM:
       return {
-        todos: [...state.todos.filter(item => item.id !== action.payload)]
+        todos: [...state.todos.filter(item => item.id !== action.payload.id)]
       }
 		default:
 			return state

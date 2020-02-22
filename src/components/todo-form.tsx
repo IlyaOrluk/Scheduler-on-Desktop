@@ -16,8 +16,6 @@ interface TodoFormProps {
 }
 
 const TodoForm: React.FC<TodoFormProps> = (props) => {
-    console.log(...props.todos)
-    console.log(props.todos.filter((item) => item.id === 4))
     const todoMaxId = () => {
         let idArray: number[] = []
         for (var id in props.todos) idArray = [...idArray, props.todos[id].id]
@@ -70,20 +68,28 @@ export default connect(
 
 
 const Wrapper = styled.div`
-    width: 100%;
+    width: 70vw;
+    max-width: 800px;
+    height: 70px;
+    padding: 20px 20px 20px 30px;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
+    border: 2px solid #cacaca70;
+    border-bottom: 0;
+    background-color: #f9d9b5;
+    box-shadow: 0px 8px 7px -6px rgba(0,0,0,0.5);
 
     .todo-form {
         margin: 30px;
 
         &-input {
             border: 0;
-            border-bottom: 2px solid #5f554f54;
+        /*    border: 2px solid #5f554f54; */
             padding: 5px;
             font-size: 30px;
             color: #5f554f;
-            background: #fdfdfd94;
+            background: #f9f3ee;
         }
         &-submit {
             border: 2px solid #5f554f;
