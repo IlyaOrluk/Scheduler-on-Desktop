@@ -30,12 +30,29 @@ const TodoList: React.FC<TodoListProps> = ({ todos, todoCompleteItem, todoDelete
     }, [todos])
 
     const todoCompleteClass = (complete: boolean) => complete ? 'complete' : ''
-    const todosComplete = todos.filter((item) => (item.complete))
-    const todosInbox = todos.filter((item) => (!item.complete))
+    let todosComplete = todos.filter((item) => (item.complete))
+    let todosInbox = todos.filter((item) => (!item.complete))
     const rootRender = () => {
         return (
             <ul className='todo-list'>
-            <h2>Inbox - {todosInbox.length}</h2>
+            <h2>ALL - {todos.length}</h2>
+            {todos.map((item, id) => {
+                return (
+                    <li className='todo-list-item' key={id}>
+                        <span>#{item.id+1}</span>
+                        <span className={`title ${todoCompleteClass(item.complete)}`}>{item.title}</span>
+                        <div>
+                            {item.complete ? <i onClick={() => {
+                                todoCompleteItem(!item.complete,item.id)
+                            }} className="far fa-check-circle green"></i> : <i onClick={() => {
+                                todoCompleteItem(!item.complete,item.id)
+                            }} className="far fa-circle"></i>}
+                            <span className='delete' onClick={() => todoDeleteItem(item.id)}><i className="far fa-times-circle"></i></span>
+                        </div>
+                    </li>
+                )
+            })}
+            <h2>INBOX - {todosInbox.length}</h2>
             {todosInbox.map((item, id) => {
                 return (
                     <li className='todo-list-item' key={id}>
@@ -52,7 +69,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, todoCompleteItem, todoDelete
                     </li>
                 )
             })}
-            <h2>Complete - {todosComplete.length}</h2>
+            <h2>COMPLETE - {todosComplete.length}</h2>
             {todosComplete.map((item, id) => {
                 return (
                     <li className='todo-list-item' key={id}>

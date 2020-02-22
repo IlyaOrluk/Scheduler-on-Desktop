@@ -18,12 +18,18 @@ interface TodoFormProps {
 const TodoForm: React.FC<TodoFormProps> = (props) => {
     console.log(...props.todos)
     console.log(props.todos.filter((item) => item.id === 4))
-    console.log(Math.max.apply(null, [1,2,3,4,6,7,8,11,69]))
+    const todoMaxId = () => {
+        let idArray: number[] = []
+        for (var id in props.todos) idArray = [...idArray, props.todos[id].id]
+        console.log(idArray, Math.max.apply(null, idArray))
+        return Math.max.apply(null, idArray)
+    }
+
   return (
       <Wrapper>
-        <form className="todo-form" onSubmit={e =>{
+        <form className="todo-form" onSubmit={e => {
             e.preventDefault()
-            props.addTodoItem(props.todos.length, props.title, false)
+            props.addTodoItem(todoMaxId()+1, props.title, false)
             props.handleTodo('')
         }}>
             <input
