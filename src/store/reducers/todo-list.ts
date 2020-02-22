@@ -4,30 +4,38 @@ import {
   DELETE_TODO_ITEM,
    } from '../types'
 import { 
-  TodoList
+  ITodoList
  } from '../../interfaces'
 
 
-const initialState: TodoList = {
+const initialState: ITodoList = {
 	todos: []
 }
 
-export default (state = initialState, action: any): TodoList  => {
+export default (state = initialState, action: any): ITodoList  => {
 	switch (action.type) {
 		case ADD_TODO_ITEM:
 			return {
-        todos: [ ...state.todos, { title: action.payload.title, complete: action.payload.complete }]
+        todos: [ 
+          ...state.todos,
+          {
+            id: action.payload.id,
+            title: action.payload.title,
+            complete: action.payload.complete 
+          }
+        ]
 			}
     case COMPLETE_TODO_ITEM:
       return {
         todos: [...state.todos.slice(0,action.payload.id),{
-          title: state.todos[action.payload.id].title,
+          id: state.todos.filter(item => item.id === action.payload.id)[0].id,
+          title: state.todos.filter(item => item.id === action.payload.id)[0].title,
           complete: action.payload.complete
         },...state.todos.slice(action.payload.id+1)]
       }
     case DELETE_TODO_ITEM:
       return {
-        todos: [...state.todos.slice(0,action.payload),...state.todos.slice(action.payload+1)]
+        todos: [...state.todos.filter(item => item.id !== action.payload)]
       }
 		default:
 			return state

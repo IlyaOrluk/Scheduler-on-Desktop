@@ -5,6 +5,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 100vh;
+  background:
+  -webkit-linear-gradient(315deg, hsla(37.15, 0%, 89.81%, 1) 0%, hsla(37.15, 0%, 89.81%, 0) 70%),
+  -webkit-linear-gradient(65deg, hsla(11.32, 41.24%, 81.3%, 1) 10%, hsla(11.32, 41.24%, 81.3%, 0) 80%),
+  -webkit-linear-gradient(135deg, hsla(0, 62.11%, 94.4%, 1) 15%, hsla(0, 62.11%, 94.4%, 0) 80%),
+  -webkit-linear-gradient(205deg, hsla(36.23, 100%, 89.78%, 1) 100%, hsla(36.23, 100%, 89.78%, 0) 70%);
+  background:
+  linear-gradient(135deg, hsla(37.15, 0%, 89.81%, 1) 0%, hsla(37.15, 0%, 89.81%, 0) 70%),
+  linear-gradient(25deg, hsla(11.32, 41.24%, 81.3%, 1) 10%, hsla(11.32, 41.24%, 81.3%, 0) 80%),
+  linear-gradient(315deg, hsla(0, 62.11%, 94.4%, 1) 15%, hsla(0, 62.11%, 94.4%, 0) 80%),
+  linear-gradient(245deg, hsla(36.23, 100%, 89.78%, 1) 100%, hsla(36.23, 100%, 89.78%, 0) 70%);
 }
 
 code {

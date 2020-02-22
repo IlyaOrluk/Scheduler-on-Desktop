@@ -1,8 +1,9 @@
 export interface ITodo {
+    id: number
     title: string
     complete: boolean
 }
 
-export interface TodoList {
+export interface ITodoList {
 	todos: ITodo[]
 }

@@ -19,6 +19,7 @@ export const handleTodo = (title: string): setHandleTodoActionType => ({
 })
 
 type setAddTodoItemActionPayloadType = {
+  id: number
   title: string
   complete: boolean
 }
@@ -26,9 +27,9 @@ type setAddTodoItemActionType = {
   type: typeof ADD_TODO_ITEM,
   payload: setAddTodoItemActionPayloadType
 }
-export const addTodoItem = (title: string, complete: boolean): setAddTodoItemActionType => ({
+export const addTodoItem = (id: number, title: string, complete: boolean): setAddTodoItemActionType => ({
   type: ADD_TODO_ITEM,
-  payload: {title, complete}
+  payload: { id, title, complete }
 })
 
 type setTodoCompleteActionPayloadType = {
