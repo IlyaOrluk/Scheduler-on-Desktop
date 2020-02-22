@@ -9,14 +9,19 @@ import {
     todoDeleteItem
 } from '../store/actions'
 
-interface TodoListProps {
+interface PropsFromState {
     todos: ITodo[]
-    todoCompleteItem(complete: boolean, id: number): void
-    todoDeleteItem(id: number): void
-    addTodoItem(id: number, title: string, complete: boolean): void
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, todoCompleteItem, todoDeleteItem, addTodoItem }) => {
+interface PropsFromDispatch {
+    todoCompleteItem: typeof todoCompleteItem
+    todoDeleteItem: typeof todoDeleteItem
+    addTodoItem: typeof addTodoItem
+}
+
+type AllProps = PropsFromState & PropsFromDispatch
+
+const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem, addTodoItem }) => {
     useEffect(() => {
         const localTodos = JSON.parse(localStorage.getItem('todos') || '[]') as ITodo[]
             localTodos.map(item => {
@@ -81,9 +86,9 @@ const mapState = ({ todoList }: RootState) => ({
 })
   
 const mapDispatch = {
-    addTodoItem: (id: number, title: string, complete: boolean) => addTodoItem(id, title, complete),
-    todoCompleteItem: (complete: boolean, id: number) => todoCompleteItem(complete, id),
-    todoDeleteItem: (id: number) => todoDeleteItem(id)
+    addTodoItem,
+    todoCompleteItem,
+    todoDeleteItem
 }
 
 export default connect(

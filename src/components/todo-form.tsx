@@ -7,15 +7,20 @@ import {
 } from '../store/actions'
 import { ITodo, ITodoList } from '../interfaces'
 
-interface TodoFormProps {
-    handleTodo(title: string): void
-    addTodoItem(id: number, title: string, complete: boolean): void
+interface PropsFromState {
     title: string
     todos: ITodo[]
-
 }
 
-const TodoForm: React.FC<TodoFormProps> = (props) => {
+interface PropsFromDispatch {
+    handleTodo: typeof handleTodo
+    addTodoItem: typeof addTodoItem
+}
+
+type AllProps = PropsFromState & PropsFromDispatch
+
+
+const TodoForm: React.FC<AllProps> = (props) => {
     const todoMaxId = () => {
         let idArray: number[] = []
         for (var id in props.todos) idArray = [...idArray, props.todos[id].id]
@@ -57,8 +62,8 @@ const mapState = (state: RootState) => ({
 })
   
 const mapDispatch = {
-    handleTodo: (title: string) => handleTodo(title),
-    addTodoItem: (id: number, title: string, complete: boolean) => addTodoItem(id, title, complete)
+    handleTodo,
+    addTodoItem 
 }
 
 export default connect(
