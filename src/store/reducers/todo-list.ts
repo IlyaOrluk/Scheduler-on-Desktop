@@ -11,14 +11,11 @@ const initialState: ITodoList = {
 	todos: []
 }
 
-// export interface Action {
-//   type: string;
-//   [key: any]: any;
-// }
 export interface todoListReducerActionType {
   type: any
   payload: ITodo
 }
+
 export default (state = initialState, action: todoListReducerActionType ): ITodoList  => {
 	switch (action.type) {
 		case TodoActionTypes.ADD_ITEM:
