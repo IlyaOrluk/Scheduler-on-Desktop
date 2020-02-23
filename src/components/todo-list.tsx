@@ -23,6 +23,7 @@ type AllProps = PropsFromState & PropsFromDispatch
 
 const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem, addTodoItem }) => {
     useEffect(() => {
+        console.log('ComponentDidMount')
         const localTodos = JSON.parse(localStorage.getItem('todos') || '[]') as ITodo[]
             localTodos.map(item => {
                 addTodoItem(item.id, item.title, item.complete)
@@ -30,6 +31,7 @@ const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem,
     }, [])
 
     useEffect(() => {
+        console.log('ComponentDidUpdate')
         localStorage.setItem('todos', JSON.stringify(todos))
         // console.log(JSON.parse(localStorage.getItem('todos') || '[]') as ITodo)
     }, [todos])

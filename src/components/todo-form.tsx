@@ -80,9 +80,10 @@ const Wrapper = styled.div`
     margin-top: 30px;
     display: flex;
     justify-content: center;
+    align-items: center;
     border: 2px solid #cacaca70;
     border-bottom: 0;
-    background-color: #f9d9b5;
+    background-color: #dae2ef;
     box-shadow: 0px 8px 7px -6px rgba(0,0,0,0.5);
 
     .todo-form {

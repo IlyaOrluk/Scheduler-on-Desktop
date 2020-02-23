@@ -14,7 +14,7 @@ const Header: React.FC = () => {
 export default Header
 
 const Wrapper = styled.div`
-  background-color: #f9d9b5;
+  background-color: #f8fafd;
   height: 10vh;
   display: flex;
   flex-direction: wrap;

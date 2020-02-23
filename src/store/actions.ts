@@ -11,6 +11,7 @@ export const handleTodo = (title: string): setHandleTodoActionType => ({
   payload: title
 })
 
+
 type setAddTodoItemActionPayloadType = {
   id: number
   title: string
@@ -25,6 +26,7 @@ export const addTodoItem = (id: number, title: string, complete: boolean): setAd
   payload: { id, title, complete }
 })
 
+
 type setTodoCompleteActionPayloadType = {
   complete: boolean
   id: number
@@ -38,12 +40,19 @@ export const todoCompleteItem = (complete: boolean, id: number): setTodoComplete
   payload: {complete, id}
 })
 
+
+type setTodoDeleteActionPayloadType = {
+  id: number
+}
+
 type setTodoDeleteActionType = {
   type: typeof TodoActionTypes.DELETE_ITEM,
-  payload: number
+  payload: setTodoDeleteActionPayloadType
 }
 export const todoDeleteItem = (id: number): setTodoDeleteActionType => ({
   type: TodoActionTypes.DELETE_ITEM,
-  payload: id
+  payload: {id}
 })
+
+
 
