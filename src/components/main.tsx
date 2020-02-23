@@ -9,10 +9,8 @@ const Main: React.FunctionComponent = () => {
   return (
     <Wrapper>
       <Header/>
-      <div className='container'>
         <TodoForm />
         <TodoList />
-      </div>
     </Wrapper>
 
   )
@@ -22,6 +20,7 @@ export default Main
 
 
 const Wrapper = styled.div`
+  width: 100%;
   .container {
     margin: 0 auto;
     max-width: 75%;

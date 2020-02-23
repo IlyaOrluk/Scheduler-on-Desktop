@@ -5,7 +5,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   /* background:
   -webkit-linear-gradient(315deg, hsla(37.15, 0%, 89.81%, 1) 0%, hsla(37.15, 0%, 89.81%, 0) 70%),
   -webkit-linear-gradient(65deg, hsla(11.32, 41.24%, 81.3%, 1) 10%, hsla(11.32, 41.24%, 81.3%, 0) 80%),
@@ -16,7 +16,7 @@ body {
   linear-gradient(25deg, hsla(11.32, 41.24%, 81.3%, 1) 10%, hsla(11.32, 41.24%, 81.3%, 0) 80%),
   linear-gradient(315deg, hsla(0, 62.11%, 94.4%, 1) 15%, hsla(0, 62.11%, 94.4%, 0) 80%),
   linear-gradient(245deg, hsla(36.23, 100%, 89.78%, 1) 100%, hsla(36.23, 100%, 89.78%, 0) 70%); */
-  background: url('https://goldwallpapers.com/uploads/posts/adventure-time-background/adventure_time_background_002.jpg') no-repeat center / cover;
+  background: url('https://st2.depositphotos.com/3779991/9876/i/950/depositphotos_98760346-stock-photo-wooden-planks-palisade-blue-serenity.jpg') no-repeat center / cover;
 }
 
 code {

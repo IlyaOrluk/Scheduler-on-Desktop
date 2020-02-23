@@ -40,9 +40,9 @@ const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem,
     }, [todos])
 
     const todoCompleteClass = (complete: boolean) => complete ? 'complete' : ''
-    let todosComplete = todos.filter((item) => (item.complete))
-    let todosInbox = todos.filter((item) => (!item.complete))
-    console.log((100/todos.length)*todosComplete.length)
+    let todosComplete = todos.filter((item) => item.complete)
+    let todosInbox = todos.filter((item) => !item.complete)
+
     const rootRender = () => {
         const todoListRender = (array: ITodo[]) => {
             return (
@@ -77,7 +77,6 @@ const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem,
     }
   return (
       <Wrapper>
-          <span>complete tasks {Math.floor((100/todos.length)*todosComplete.length)}%</span>
           {rootRender()}
       </Wrapper>
   )
@@ -106,10 +105,9 @@ export default connect(
 
 const Wrapper = styled.div`
     background: #fdfdfd94;
-    height: 60vh;
-    width: 70vw;
-    max-width: 800px;
-    padding: 20px 20px 20px 30px;
+    height: 72.4vh;
+    width: 100%;
+    margin: 0 auto;
     overflow: auto;
     display: flex;
     justify-content: center;
@@ -120,7 +118,7 @@ const Wrapper = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 100%;
+        width: 75%;
         padding-inline-start: 0;
         &-item {
             width: 100%;
@@ -129,7 +127,7 @@ const Wrapper = styled.div`
             border-bottom: 2px solid #5f554f54;
             font-size: 27px;
             font-weight: 600;
-            color: #4e2a4d;
+            color: #000000ba;
             list-style: none;
             display: flex;
             justify-content: space-between;

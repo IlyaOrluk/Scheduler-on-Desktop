@@ -31,14 +31,14 @@ export const SpanTime: React.SFC = () => {
     useEffect(() => {
         setInterval(()=> {
             setTime(new Date())
-        }, 1000)
+        }, 10000)
     }, [])
     if(time){
         return (
             <React.Fragment>
                 <span className='date'>
                     {time.getDate()}.
-                    {time.getMonth()}.
+                    {time.getMonth()+1}.
                     {time.getFullYear()}
                 </span>
             </React.Fragment>

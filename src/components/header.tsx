@@ -1,15 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 import {SpanTime, SpanDate} from './time'
+import ProgressBar from './progress-bar'
 
 const Header: React.FC = () => {
 
   return (
       <Wrapper>
-        <img src={'https://www.pngkey.com/png/full/897-8975525_adventure-time-jake-the-dog-dancing-jake-the.png'} className="App-logo" alt="logo" />
-        <h1 className='App-title'>Magic Scheduler</h1>
-        <SpanTime/>
-        <SpanDate/>
+        
+        <div className='navigation'>
+        <h1 className='title'>Scheduler</h1>
+          <SpanTime/>
+          <SpanDate/>
+          <ProgressBar todos={[]}/>
+        </div>
       </Wrapper>
   );
 }
@@ -17,31 +21,43 @@ const Header: React.FC = () => {
 export default Header
 
 const Wrapper = styled.div`
-  background-color: #f8fafd;
-  height: 10vh;
+  position: relative;
+  background: url('https://avatars.mds.yandex.net/get-pdb/879561/900845e6-d213-401c-900f-ab2fe08c31ce/orig') no-repeat center / cover;
+  height: 20vh;
   display: flex;
   flex-direction: wrap;
   align-items: center;
   justify-content: flex-start;
   font-size: 25px;
   color: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-.time, .date {
-  margin: 15px;
-  color: black;
-  font-size: 25px;
-  font-weight: 600;
-}
-.App-logo {
-  height: 7vh;
-  width: auto;
-  pointer-events: none;
-  margin: 30px;
-}
 
-.App-title {
-  color: #8e7667;
-}
+  .navigation {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    background: #ffffff80;
+    .time, .date {
+      margin: 15px;
+      color: #000000ba;
+      font-size: 25px;
+      font-weight: 600;
+    }
+    .title {
+      position: absolute;
+      top: 5%;
+      margin: 0 auto;
+      color: #000000ba;
+    }
+  }
+
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
