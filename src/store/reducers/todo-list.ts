@@ -30,13 +30,6 @@ export default (state = initialState, action: todoListReducerActionType ): ITodo
         ]
 			}
     case TodoActionTypes.COMPLETE_ITEM:
-      console.log('start array', ...state.todos.filter(item => item.id < action.payload.id))
-      console.log('action', {
-        id: state.todos.filter(item => item.id === action.payload.id)[0].id,
-        title: state.todos.filter(item => item.id === action.payload.id)[0].title,
-        complete: action.payload.complete
-      })
-      console.log('end array', ...state.todos.filter(item => item.id > action.payload.id))
       return {
         todos: [...state.todos.filter(item => item.id < action.payload.id),{
           id: state.todos.filter(item => item.id === action.payload.id)[0].id,

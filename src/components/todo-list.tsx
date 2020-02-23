@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { ITodo, ITodoList } from '../interfaces'
@@ -21,17 +21,20 @@ interface PropsFromDispatch {
 
 type AllProps = PropsFromState & PropsFromDispatch
 
+
+
 const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem, addTodoItem }) => {
+    
     useEffect(() => {
-        console.log('ComponentDidMount')
         const localTodos = JSON.parse(localStorage.getItem('todos') || '[]') as ITodo[]
             localTodos.map(item => {
                 addTodoItem(item.id, item.title, item.complete)
             })
+        
+            
     }, [])
 
     useEffect(() => {
-        console.log('ComponentDidUpdate')
         localStorage.setItem('todos', JSON.stringify(todos))
         // console.log(JSON.parse(localStorage.getItem('todos') || '[]') as ITodo)
     }, [todos])
@@ -39,6 +42,7 @@ const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem,
     const todoCompleteClass = (complete: boolean) => complete ? 'complete' : ''
     let todosComplete = todos.filter((item) => (item.complete))
     let todosInbox = todos.filter((item) => (!item.complete))
+    console.log((100/todos.length)*todosComplete.length)
     const rootRender = () => {
         const todoListRender = (array: ITodo[]) => {
             return (
@@ -73,6 +77,7 @@ const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem,
     }
   return (
       <Wrapper>
+          <span>complete tasks {Math.floor((100/todos.length)*todosComplete.length)}%</span>
           {rootRender()}
       </Wrapper>
   )
@@ -109,9 +114,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: baseline;
-    .green {
-        color: green;
-    }
+
     .todo-list {
         display: flex;
         flex-direction: column;
@@ -124,8 +127,9 @@ const Wrapper = styled.div`
             margin: 5px;
             border: 0;
             border-bottom: 2px solid #5f554f54;
-            font-size: 25px;
-            color: #5f554f;
+            font-size: 27px;
+            font-weight: 600;
+            color: #4e2a4d;
             list-style: none;
             display: flex;
             justify-content: space-between;
@@ -133,8 +137,11 @@ const Wrapper = styled.div`
             .title {
                 width: 80%;
             }
+            .green {
+                color: #1ed21e;
+            }
             .delete {
-                color: red;
+                color: #ff00009c;
                 cursor: pointer;
             }
             .fa-check-circle, .fa-circle {

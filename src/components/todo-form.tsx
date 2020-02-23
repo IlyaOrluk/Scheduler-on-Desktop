@@ -24,15 +24,15 @@ const TodoForm: React.FC<AllProps> = (props) => {
     const todoMaxId = () => {
         let idArray: number[] = []
         for (var id in props.todos) idArray = [...idArray, props.todos[id].id]
-        console.log(idArray, Math.max.apply(null, idArray))
+
         return Math.max.apply(null, idArray)
     }
-
+    const todoId = () => props.todos.length < 1 ? 0 : todoMaxId() + 1
   return (
       <Wrapper>
         <form className="todo-form" onSubmit={e => {
             e.preventDefault()
-            props.addTodoItem(todoMaxId()+1, props.title, false)
+            props.addTodoItem(todoId(), props.title, false)
             props.handleTodo('')
         }}>
             <input
