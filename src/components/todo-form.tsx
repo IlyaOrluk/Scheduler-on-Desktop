@@ -38,7 +38,7 @@ const TodoForm: React.FC<AllProps> = ({ todos, title, handleTodo, addTodoItem })
             <input
                 className='todo-form-input'
                 type='text'
-                placeholder='Type new Todo my boy...'
+                placeholder='Type new Todo...'
                 value={title}
                 onChange={e => handleTodo((e.target as HTMLInputElement).value)}
                 />
@@ -74,15 +74,16 @@ export default connect(
 
 const Wrapper = styled.div`
     width: 100%;
-    height: 9vh;
+    height: 8.6vh;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #a5e9ef;
-    border: 2px solid white;
+    background-color: #444540;
+    border: 4px solid #3e3e3e;
     border-left: 0;
     border-right: 0;
+    border-bottom: 0;
     box-shadow: 0px 12px 18px -6px rgba(0,0,0,0.5);
     
     .todo-form {
@@ -90,19 +91,19 @@ const Wrapper = styled.div`
         border: 3px solid #dadada;
         border-radius: 6px;
         background: white;
+        display: flex;
+        justify-content: center;
+        height: 40px;
         &-input {
+            padding: 5px;
             border: 0;
-            padding: 6px;
-            margin: 0;
-            font-size: 30px;
+            font-size: 20px;
             color: #5f554f;
             background: transparent;
         }
         &-submit {
             border: 2px solid #dadada;
-            margin: 0;
-            padding: 5px;
-            font-size: 30px;
+            font-size: 20px;
             color: #000000ba;
             background: #dadada;
         }

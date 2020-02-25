@@ -22,7 +22,7 @@ export default Header
 
 const Wrapper = styled.div`
   position: relative;
-  background: url('https://avatars.mds.yandex.net/get-pdb/879561/900845e6-d213-401c-900f-ab2fe08c31ce/orig') no-repeat center / cover;
+  background: url('https://miro.medium.com/max/4200/0*cGDKbUrA_8vJC4d3') no-repeat center / cover;
   height: 20vh;
   display: flex;
   flex-direction: wrap;
@@ -35,25 +35,37 @@ const Wrapper = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    width: 50%;
+    width: 40%;
     height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
     background: #ffffff80;
+    @media screen and (max-width:800px) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
     .time, .date {
       margin: 15px;
       color: #000000ba;
-      font-size: 25px;
+      font-size: 20px;
       font-weight: 600;
+      @media screen and (max-width:800px) {
+        margin: 7px;
+    }
     }
     .title {
       position: absolute;
       top: 5%;
       margin: 0 auto;
       color: #000000ba;
+      font-size: 5vw;
     }
+
+
   }
 
 

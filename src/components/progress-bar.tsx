@@ -12,7 +12,9 @@ type AllProps = PropsFromState
 
 
 const ProgressBar: React.SFC<AllProps> = ({ todos }) => {
-    const progress: number = todos.length === 0 ? 0 : Math.floor((100/todos.length)*todos.filter((item) => item.complete).length)
+    const completedTodosLength = todos.filter((item) => item.complete).length
+    const todosPercent = Math.floor(100/todos.length)
+    const progress: number = todos.length === 0 ? 0 : todosPercent * completedTodosLength
         return (
             <Wrapper progress={progress}>
                 <div className='wrapper'>
@@ -52,11 +54,12 @@ margin: 15px;
 span {
     margin: 0 10px;
     color: #000000ba;
+    font-size: 20px;
 }
 .wrapper {
-    width: 200px;
-    height: 20px;
-    background: #ffffff;
+    width: 100px;
+    height: 10px;
+    background: #ffffff00;
     padding: 0px;
     border-radius: 30px;
     border: 1px solid #000000ba; 
@@ -74,10 +77,7 @@ span {
         border-radius: 30px;
         background-color: hsla(131, 55%, 45%, 1);
         position: relative;
-        box-shadow: 
-          /* This is the top gradient for the color bar */
-          inset 0 10px 0 rgba(255,255,255,0.2),
-          inset 0 2px 2px rgba(0,0,0,0.125);
+        box-shadow: 0 0 4px 0 rgb(0,255,20, .6), inset 0 2px 7px rgb(0,255,20, .8);
         cursor: pointer;
         margin: 0 0px;
         border-right: 1px solid #000000ba;

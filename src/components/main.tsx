@@ -21,6 +21,7 @@ export default Main
 
 const Wrapper = styled.div`
   width: 100%;
+
   .container {
     margin: 0 auto;
     max-width: 75%;
