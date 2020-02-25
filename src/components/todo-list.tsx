@@ -6,22 +6,49 @@ import { ITodo, ITodoList } from '../interfaces'
 import {
     addTodoItem,
     todoCompleteItem,
-    todoDeleteItem
+    todoDeleteItem,
+    changeTodoTitle,
+    handleNewTodoTitle
 } from '../store/actions'
 
 
 type todoItemProps = {
     item: ITodo
+    newTodoTitle: string
     todoCompleteItem: typeof todoCompleteItem
     todoDeleteItem: typeof todoDeleteItem
+    changeTodoTitle: typeof changeTodoTitle
+    handleNewTodoTitle: typeof handleNewTodoTitle
 }
 
-const TodoListItem: React.FC<todoItemProps> = ({ item, todoCompleteItem, todoDeleteItem }) => {
-    const [checkTodoChange, setCheckTodoChange] = useState(false) // The state of a todo change
+const TodoListItem: React.FC<todoItemProps> = ({ item, todoCompleteItem, todoDeleteItem, changeTodoTitle, newTodoTitle, handleNewTodoTitle }) => {
+    // The state of a todo change
+    const [checkTodoChange, setCheckTodoChange] = useState(false) 
+    // added class complete if todo copmlete === true 
+    const todoCompleteClass = (complete: boolean) => complete ? 'complete' : '' 
+    // if you click on each element, except for the current change todo ,then the form change title is deleted
+    const changeTodoForm = () => {
+        return (
+            <div 
+                className='change-todo-form'
+                onBlur={(e)=>{
+                    if(e.relatedTarget !== document.querySelector('.change-todo-submit')) {
+                        setCheckTodoChange(false)
+                        handleNewTodoTitle('')
+                    }
+                }}>
+                <input className='change-todo' type='text' placeholder='Type new title...' value={newTodoTitle} onChange={(e) => {
+                    handleNewTodoTitle(e.target.value)}}/>
+                <button className='change-todo-submit' onClick={e => {
+                    changeTodoTitle(item.id, newTodoTitle)
+                    setCheckTodoChange(false)
+                    handleNewTodoTitle('')
+                   }}><i className="fas fa-check"></i></button>
+            </div>
+        )
+    } 
 
-    const todoCompleteClass = (complete: boolean) => complete ? 'complete' : '' // added class complete if todo copmlete === true 
-    const changeTodoForm = <input className='change-todo' type='text' placeholder='type new title...' value={item.title} onBlur={()=>setCheckTodoChange(false)}/>
-    const todoTitle = checkTodoChange ? changeTodoForm : <span className={`title ${todoCompleteClass(item.complete)}`}>{item.title}</span>
+    const todoTitle = checkTodoChange ? changeTodoForm() : <span className={`title ${todoCompleteClass(item.complete)}`}>{item.title}</span>
 
     useEffect(() => {
         if(checkTodoChange){
@@ -33,11 +60,10 @@ const TodoListItem: React.FC<todoItemProps> = ({ item, todoCompleteItem, todoDel
         <TodoItemWrapper key={item.id}>
                 {todoTitle}
                 <div>
-                    <span style={{color: checkTodoChange ? 'orange' : ''}} onClick={async () => {
-                    setCheckTodoChange(!checkTodoChange)
-                    }
-    
-                        }><i className="fas fa-pencil-alt"></i></span>
+                    <span style={{color: checkTodoChange ? 'orange' : ''}} onClick={() => {
+                    handleNewTodoTitle(item.title)
+                    setCheckTodoChange(true)
+                    }}><i className="fas fa-pencil-alt"></i></span>
                     {item.complete ? <i onClick={() => {
                         todoCompleteItem(!item.complete,item.id)
                     }} className="far fa-check-circle green"></i> : <i onClick={() => {
@@ -74,7 +100,23 @@ const TodoItemWrapper = styled.li`
             font-weight: 600;
             color: #000000ba;
             margin: 0;
+            padding: 10px;
         }
+        .change-todo-form {
+            display: flex;
+            margin: 5px;
+        }
+        .change-todo-submit {
+            height: 100%;
+            margin: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            color: #000000ba;
+            background: transparent;
+            border: 0;
+        }
+
+
         .green {
             color: #1ed21e;
         }
@@ -94,19 +136,22 @@ const TodoItemWrapper = styled.li`
 
 interface PropsFromState {
     todos: ITodo[]
+    newTodoTitle: string
 }
 
 interface PropsFromDispatch {
     todoCompleteItem: typeof todoCompleteItem
     todoDeleteItem: typeof todoDeleteItem
     addTodoItem: typeof addTodoItem
+    changeTodoTitle: typeof changeTodoTitle
+    handleNewTodoTitle: typeof handleNewTodoTitle
 }
 
 type AllProps = PropsFromState & PropsFromDispatch
 
 
 
-const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem, addTodoItem }) => {
+const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem, addTodoItem, changeTodoTitle, newTodoTitle, handleNewTodoTitle }) => {
     
     useEffect(() => {
         const localTodos = JSON.parse(localStorage.getItem('todos') || '[]') as ITodo[]
@@ -135,6 +180,9 @@ const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem,
                             item={item}
                             todoCompleteItem={todoCompleteItem}
                             todoDeleteItem={todoDeleteItem}
+                            changeTodoTitle={changeTodoTitle}
+                            newTodoTitle={newTodoTitle}
+                            handleNewTodoTitle={handleNewTodoTitle}
                         />
                     )
                 })
@@ -161,16 +209,20 @@ const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem,
 
 interface RootState {
     todoList: ITodoList
+    newTodoTitle: string
 }
 
 const mapState = ({ todoList }: RootState) => ({
-    todos: todoList.todos
+    todos: todoList.todos,
+    newTodoTitle: todoList.newTodoTitle
 })
   
 const mapDispatch = {
     addTodoItem,
     todoCompleteItem,
-    todoDeleteItem
+    todoDeleteItem,
+    changeTodoTitle,
+    handleNewTodoTitle
 }
 
 export default connect(
@@ -180,7 +232,7 @@ export default connect(
 
 
 const Wrapper = styled.div`
-    background: #fdfdfd94;
+    background: #fdfdfdc2;
     height: 67.5vh;
     width: 100%;
     margin: 0 auto;
@@ -195,6 +247,7 @@ const Wrapper = styled.div`
         justify-content: center;
         align-items: center;
         width: 75%;
+        max-width: 900px;
         padding-inline-start: 0;
     }
 `

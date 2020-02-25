@@ -5,5 +5,6 @@ export interface ITodo {
 }
 
 export interface ITodoList {
-	todos: ITodo[]
+    todos: ITodo[]
+    newTodoTitle: string
 }

@@ -53,6 +53,29 @@ export const todoDeleteItem = (id: number): setTodoDeleteActionType => ({
   type: TodoActionTypes.DELETE_ITEM,
   payload: {id}
 })
+type setHandlerNewTodoTitleActionPayloadType = {
+  title: string
+}
+type setHandlerNewTodoTitleActionType = {
+  type: typeof TodoActionTypes.HANDLER_NEW_TITLE,
+  payload: setHandlerNewTodoTitleActionPayloadType
+}
+export const handleNewTodoTitle = (title: string): setHandlerNewTodoTitleActionType => ({
+  type: TodoActionTypes.HANDLER_NEW_TITLE,
+  payload: {title}
+})
 
+type setChangeTodoTitleActionPayloadType = {
+  id: number,
+  title: string
+}
 
+type setChangeTodoTitleActionType = {
+  type: typeof TodoActionTypes.CHANGE_TITLE,
+  payload: setChangeTodoTitleActionPayloadType
+}
+export const changeTodoTitle = (id: number, title: string): setChangeTodoTitleActionType => ({
+  type: TodoActionTypes.CHANGE_TITLE,
+  payload: {id, title}
+})
 
