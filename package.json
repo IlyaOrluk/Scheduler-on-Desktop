@@ -1,7 +1,14 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "description": "",
+  "main": "src/electron-starter.js",
   "private": true,
+  "devDependencies": {
+    "custom-electron-titlebar": "^3.2.2-hotfix62",
+    "electron": "^8.0.1",
+    "electron-builder": "^22.3.2"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
@@ -22,11 +29,14 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "electron .",
+    "electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "count": "cloc app/"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

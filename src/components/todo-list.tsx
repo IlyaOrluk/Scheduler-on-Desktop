@@ -105,7 +105,7 @@ export default connect(
 
 const Wrapper = styled.div`
     background: #fdfdfd94;
-    height: 72.4vh;
+    height: 67vh;
     width: 100%;
     margin: 0 auto;
     overflow: auto;

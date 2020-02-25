@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import {SpanTime, SpanDate} from './time'
+import {SpanTime, SpanDate, Clock} from './time'
 import ProgressBar from './progress-bar'
 
 const Header: React.FC = () => {
 
   return (
       <Wrapper>
-        
+
         <div className='navigation'>
         <h1 className='title'>Scheduler</h1>
           <SpanTime/>

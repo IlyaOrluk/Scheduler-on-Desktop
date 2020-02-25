@@ -4,11 +4,11 @@ import thunk from 'redux-thunk'
 import reducers from './reducers'
 
 const middleware = [thunk]
-
-const composeEnhancers =
-  typeof window !== 'undefined'
-    ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    : compose
+// const composeEnhancers =
+//   typeof window !== 'undefined'
+//     ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+//     : compose
+const composeEnhancers = process.env.NODE_ENV === 'development' ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose
 
 let state
 if (typeof window !== 'undefined') {
@@ -18,7 +18,7 @@ if (typeof window !== 'undefined') {
 const store = createStore(
   reducers,
   state,
-  composeEnhancers(applyMiddleware(...middleware))
+  compose(applyMiddleware(...middleware))
 )
 
 export { store }

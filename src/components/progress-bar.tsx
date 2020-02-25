@@ -71,7 +71,7 @@ span {
     .progress {
         width: ${(props: StyledPropsType) => props.progress}%;
         height: 100%;
-        border-radius: 50px 5px 5px 50px;
+        border-radius: 30px;
         background-color: hsla(131, 55%, 45%, 1);
         position: relative;
         box-shadow: 
