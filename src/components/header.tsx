@@ -47,7 +47,7 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     background-color: #444540;
-    border: 4px solid #3e3e3e;
+    border: 4px solid #808080;
     border-left: 0;
     border-right: 0;
     border-bottom: 0;

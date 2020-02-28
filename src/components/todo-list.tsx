@@ -49,36 +49,39 @@ const TodoListItem: React.FC<todoItemProps> = ({ item, todoCompleteItem, todoDel
     } 
 
     const todoTitle = checkTodoChange ? changeTodoForm() : <span className={`title ${todoCompleteClass(item.complete)}`}>{item.title}</span>
-
+        const todoCheckComplete = item.complete ? <i onClick={() => {
+            todoCompleteItem(!item.complete,item.id)
+        }} className="far fa-check-circle green"></i> : <i onClick={() => {
+            todoCompleteItem(!item.complete,item.id)
+        }} className="far fa-circle"></i>
     useEffect(() => {
         if(checkTodoChange){
+            // TODO: refactoring to ref
             (document.querySelector('.change-todo') as any).focus()
         }
     }, [checkTodoChange])
 
     return (
         <TodoItemWrapper key={item.id}>
+                <span className='todo-type'><i className="fas fa-code"></i></span>
                 {todoTitle}
-                <div>
+                <span className='todo-date'>13 February</span>
+                <div className='todo-control'>
                     <span style={{color: checkTodoChange ? 'orange' : ''}} onClick={() => {
                     handleNewTodoTitle(item.title)
                     setCheckTodoChange(true)
                     }}><i className="fas fa-pencil-alt"></i></span>
-                    {item.complete ? <i onClick={() => {
-                        todoCompleteItem(!item.complete,item.id)
-                    }} className="far fa-check-circle green"></i> : <i onClick={() => {
-                        todoCompleteItem(!item.complete,item.id)
-                    }} className="far fa-circle"></i>}
-                    <span className='delete' onClick={() => todoDeleteItem(item.id)}><i className="far fa-times-circle"></i></span>
-                    
+                    {todoCheckComplete}
+                    <span className='delete' onClick={() => todoDeleteItem(item.id)}><i className="far fa-times-circle"></i></span> 
                 </div>
         </TodoItemWrapper>
     )
 }
 
 const TodoItemWrapper = styled.li`
+        position: relative;
         width: 100%;
-        height: 70px;
+        height: 90px;
         margin: 5px;
         padding: 15px;
         border: 2px solid #5f554f0d;
@@ -90,8 +93,30 @@ const TodoItemWrapper = styled.li`
         justify-content: space-between;
         align-items: center;
         box-shadow: 0px 7px 18px -10px rgba(0,0,0,0.7);
+
+        .todo-date {
+            position: absolute;
+            font-size: 13px;
+            font-weight: 400;
+            bottom: 10%;
+            right: 17%;
+        }
+        .todo-control:before {
+            content: "";
+            border-left: 1px solid #8c8b8c69;
+            margin: 0 20px;
+        }
+        .todo-type {
+            font-size: 33px;
+            margin: 10px 20px;
+        }
+        .todo-type:after {
+            content: "";
+            border-right: 1px solid #8c8b8c69;
+            margin: 0 20px;
+        }
         .title {
-            width: 80%;
+            width: 70%;
         }
         .change-todo {
             width: 80%;

@@ -27,18 +27,33 @@ export const SpanTime: React.SFC = () => {
   }
 
   export const SpanDate: React.SFC = () => {
-    const [time, setTime] = useState<any>(new Date())
+    const [time, setTime] = useState(new Date())
     useEffect(() => {
         setInterval(()=> {
             setTime(new Date())
         }, 10000)
     }, [])
+
+    const months: string[] = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December']
+        console.log(months)
     if(time){
         return (
             <React.Fragment>
                 <span className='date'>
-                    {time.getDate()}.
-                    {time.getMonth()+1}.
+                    {time.getDate()} - 
+                    {months[time.getMonth()]} -
                     {time.getFullYear()}
                 </span>
             </React.Fragment>
