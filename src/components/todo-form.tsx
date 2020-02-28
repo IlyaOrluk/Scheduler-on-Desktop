@@ -44,6 +44,17 @@ const TodoForm: React.FC<AllProps> = ({ todos, title, handleTodo, addTodoItem })
                 />
             <input className='todo-form-submit' type='submit' value='Add'/>
         </form>
+        <div style={{color: 'black', width: '10%'}}>
+            <i className="fas fa-running"> - go to</i>
+            <i className="fas fa-quidditch"> - sport</i>
+            <i className="fas fa-code"> - code</i>
+            <i className="fas fa-briefcase"> - work</i>
+            <i className="fas fa-globe"> - network</i>
+            <i className="fas fa-book-reader"> - learn</i>
+            <i className="fas fa-book"> - read</i>
+            <i className="fas fa-drumstick-bite"> - cooking</i>
+            <i className="far fa-handshake"> - meeting</i>
+          </div>
       </Wrapper>
   )
 }
@@ -73,28 +84,18 @@ export default connect(
 
 
 const Wrapper = styled.div`
-    width: 100%;
-    height: 8.6vh;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #444540;
-    border: 4px solid #3e3e3e;
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 0;
-    box-shadow: 0px 12px 18px -6px rgba(0,0,0,0.5);
-    
+
     .todo-form {
         margin: 30px;
         border: 3px solid #dadada;
         border-radius: 6px;
         background: white;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         height: 40px;
+        width: 400px;
         &-input {
+            width: 100%;
             padding: 5px;
             border: 0;
             font-size: 20px;

@@ -18,7 +18,7 @@ if (typeof window !== 'undefined') {
 const store = createStore(
   reducers,
   state,
-  compose(applyMiddleware(...middleware))
+  composeEnhancers(applyMiddleware(...middleware))
 )
 
 export { store }

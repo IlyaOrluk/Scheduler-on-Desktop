@@ -3,15 +3,23 @@ import styled from 'styled-components'
 import Header from './header'
 import TodoForm from './todo-form'
 import TodoList from './todo-list'
+import {IndexPage} from '../pages/index-page'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 const Main: React.FunctionComponent = () => {
   
   return (
-    <Wrapper>
+    <BrowserRouter>
+        <Wrapper>
       <Header/>
-        <TodoForm />
-        <TodoList />
+      <Switch>
+        <Route component={TodoList} path='/all' exact/>
+        <Route component={TodoForm} path='/todo-form' exact/>
+        <Route component={IndexPage} path='/' exact/>
+      </Switch>
     </Wrapper>
+    </BrowserRouter>
+
 
   )
 }

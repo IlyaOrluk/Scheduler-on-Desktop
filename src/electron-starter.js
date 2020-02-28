@@ -16,11 +16,11 @@ let mainWindow;
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 1000,
+        width: 600,
+        height: 800,
         // 1. Remove the frame of the window
         frame: false,
-        resizable: false,
+        // resizable: false,
         transparent:true,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),

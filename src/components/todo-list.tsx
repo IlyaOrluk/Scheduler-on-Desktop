@@ -82,7 +82,7 @@ const TodoItemWrapper = styled.li`
         margin: 5px;
         padding: 15px;
         border: 2px solid #5f554f0d;
-        font-size: 27px;
+        font-size: 24px;
         font-weight: 600;
         color: #000000ba;
         list-style: none;
@@ -154,17 +154,18 @@ type AllProps = PropsFromState & PropsFromDispatch
 const TodoList: React.FC<AllProps> = ({ todos, todoCompleteItem, todoDeleteItem, addTodoItem, changeTodoTitle, newTodoTitle, handleNewTodoTitle }) => {
     
     useEffect(() => {
-        const localTodos = JSON.parse(localStorage.getItem('todos') || '[]') as ITodo[]
+        const localTodos: ITodo[] = JSON.parse(localStorage.getItem('todos') || '[]')
+        console.log(todos !== localTodos)
             localTodos.map(item => {
                 addTodoItem(item.id, item.title, item.complete)
             })
-        
-            
+
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('todos', JSON.stringify(todos))
-        // console.log(JSON.parse(localStorage.getItem('todos') || '[]') as ITodo)
+        const localTodos: ITodo[] = JSON.parse(localStorage.getItem('todos') || '[]') as ITodo[]
+            localStorage.setItem('todos', JSON.stringify(todos))
+
     }, [todos])
 
     
@@ -233,7 +234,7 @@ export default connect(
 
 const Wrapper = styled.div`
     background: #fdfdfdc2;
-    height: 67.5vh;
+    height: 64.1vh;
     width: 100%;
     margin: 0 auto;
     overflow: auto;

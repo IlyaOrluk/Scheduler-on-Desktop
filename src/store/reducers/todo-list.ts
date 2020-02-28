@@ -23,12 +23,13 @@ export default (state = initialState, action: todoListReducerActionType ): ITodo
 			return {
         ...state,
         todos: [ 
-          ...state.todos,
+          ...state.todos.filter(item => item.id < action.payload.id),
           {
             id: action.payload.id,
             title: action.payload.title,
             complete: action.payload.complete 
-          }
+          },
+          ...state.todos.filter(item => item.id > action.payload.id)
         ]
 			}
     case TodoActionTypes.COMPLETE_ITEM:
@@ -43,7 +44,8 @@ export default (state = initialState, action: todoListReducerActionType ): ITodo
     case TodoActionTypes.DELETE_ITEM:
       return {
         ...state,
-        todos: [...state.todos.filter(item => item.id !== action.payload.id)]
+        todos: [...state.todos.filter(item => item.id < action.payload.id),
+          ...state.todos.filter(item => item.id > action.payload.id)]
       }
     case TodoActionTypes.CHANGE_TITLE:
       return {

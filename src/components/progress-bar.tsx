@@ -49,7 +49,7 @@ type StyledPropsType = {
 const Wrapper = styled.div`
 display: flex;
 align-items: center;
-margin: 15px;
+margin: 11px;
 
 span {
     margin: 0 10px;
