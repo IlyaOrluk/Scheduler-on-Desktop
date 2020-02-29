@@ -17,7 +17,7 @@ const Header: React.FC = () => {
         <div className='panel'>
           <Link to='/'>INFO</Link>
           <Link to='/all'>ALL</Link>
-          <Link to='/todo-form'>+</Link>
+          <Link to='/new'>+</Link>
         </div>
       </Wrapper>
   );

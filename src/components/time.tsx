@@ -47,7 +47,6 @@ export const SpanTime: React.SFC = () => {
         'October',
         'November',
         'December']
-        console.log(months)
     if(time){
         return (
             <React.Fragment>
