@@ -5,9 +5,11 @@
   "main": "src/electron-starter.js",
   "private": true,
   "devDependencies": {
+    "babel-plugin-emotion": "^10.0.29",
     "custom-electron-titlebar": "^3.2.2-hotfix62",
     "electron": "^8.0.1",
-    "electron-builder": "^22.3.2"
+    "electron-builder": "^22.3.2",
+    "jest": "^25.1.0"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -37,7 +39,7 @@
     "dist": "electron-builder",
     "dev": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
